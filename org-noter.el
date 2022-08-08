@@ -612,7 +612,7 @@ properties, by a margin of NEWLINES-NUMBER."
         (org-noter--with-valid-session
          (org-entry-put nil org-noter-property-doc-file (org-noter--session-property-text session))
          (org-entry-put nil org-noter--property-auto-save-last-location "nil"))))
-
+    (org-entry-put nil "ROAM_EXCLUDE" "t")
     (run-hooks 'org-noter-insert-heading-hook)))
 
 (defun org-noter--narrow-to-root (ast)
