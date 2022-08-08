@@ -587,7 +587,7 @@ If nil, the session used will be `org-noter--session'."
            (scroll-right current-scroll)
            (scroll-left goal t)))))))
 
-(defun org-noter--insert-heading (level title &optional newlines-number location)
+(defun org-noter--insert-heading (level title &optional newlines-number location outline)
   "Insert a new heading at LEVEL with TITLE.
 The point will be at the start of the contents, after any
 properties, by a margin of NEWLINES-NUMBER."
@@ -597,8 +597,10 @@ properties, by a margin of NEWLINES-NUMBER."
          (changer (if (> level initial-level) 'org-do-demote 'org-do-promote))
          (number-of-times (abs (- level initial-level))))
     (dotimes (_ number-of-times) (funcall changer))
-    (insert (org-trim (replace-regexp-in-string "\n" " " title)))
-
+    (if 'outline
+    (insert (format "%s :outline:" (org-trim (replace-regexp-in-string "\n" " " title))))
+    (insert (format "%s :annotation:" (org-trim (replace-regexp-in-string "\n" " " title))))
+    )
     (org-end-of-subtree)
     (unless (bolp) (insert "\n"))
     (org-N-empty-lines-before-current (1- newlines-number))
