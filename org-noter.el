@@ -404,7 +404,8 @@ The title used will be the default one."
        ((eq document-major-mode 'pdf-view-mode)
         (setq buffer-file-name document-path)
         (pdf-view-mode)
-        (add-hook 'pdf-view-after-change-page-hook 'org-noter--doc-location-change-handler nil t))
+        ;; (add-hook 'pdf-view-after-change-page-hook 'org-noter--doc-location-change-handler nil t)
+        )
 
        ;; NOTE(nox): DocView
        ((eq document-major-mode 'doc-view-mode)
