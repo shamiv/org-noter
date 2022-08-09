@@ -598,7 +598,7 @@ properties, by a margin of NEWLINES-NUMBER."
          (changer (if (> level initial-level) 'org-do-demote 'org-do-promote))
          (number-of-times (abs (- level initial-level))))
     (dotimes (_ number-of-times) (funcall changer))
-    (if 'outline
+    (if outline
     (insert (format "%s :outline:" (org-trim (replace-regexp-in-string "\n" " " title))))
     (insert (format "%s :annotation:" (org-trim (replace-regexp-in-string "\n" " " title))))
     )
@@ -1725,7 +1725,7 @@ Only available with PDF Tools."
                  (setq last-absolute-level (+ top-level relative-level)
                        level last-absolute-level))
 
-               (org-noter--insert-heading level title)
+               (org-noter--insert-heading level title nil nil t)
 
                (when location
                  (org-entry-put nil org-noter-property-note-location (org-noter--pretty-print-location location)))
@@ -1872,7 +1872,7 @@ defines if the text should be inserted inside the note."
 
                ;; NOTE(nox): This is needed to insert in the right place
                (outline-show-entry)
-               (org-noter--insert-heading level title empty-lines-number location)
+               (org-noter--insert-heading level title empty-lines-number location nil)
                (when (org-noter--session-hide-other session) (org-overview))
 
                (setf (org-noter--session-num-notes-in-view session)
