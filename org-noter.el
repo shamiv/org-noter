@@ -2269,8 +2269,10 @@ notes file, even if it finds one."
               (setq notes-files-annotating notes-files)
             (with-current-buffer (find-file-noselect (car notes-files))
               (goto-char (point-max))
+              ;; (insert (if (save-excursion (beginning-of-line) (looking-at "[[:space:]]*$")) "" "\n")
+              ;;         "* " document-base)
               (insert (if (save-excursion (beginning-of-line) (looking-at "[[:space:]]*$")) "" "\n")
-                      "* " document-base)
+                      ":PROPERTIES:\n:ID: " (org-id-new) "\n:END:\n" "#+title: " document-base "\n#+filetags: :literature_note:\n#+TAGS: summary(s) leestip foutje talking_point vraag kritiek mooi\n" "* " document-base)
               (org-entry-put nil org-noter-property-doc-file
                              (file-relative-name document-used-path
                                                  (file-name-directory (car notes-files)))))
