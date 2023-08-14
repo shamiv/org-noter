@@ -2239,7 +2239,7 @@ notes file, even if it finds one."
                                    (setq current-directory
                                          (file-name-directory (directory-file-name current-directory))))
                       (throw 'break nil)))))
-              (setq list-of-possible-targets (nreverse list-of-possible-targets))
+              ;;(setq list-of-possible-targets (nreverse list-of-possible-targets))
 
               ;; NOTE(nox): Create list of targets from search path
               (dolist (path org-noter-notes-search-path)
