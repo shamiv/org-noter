@@ -2239,7 +2239,8 @@ notes file, even if it finds one."
                                    (setq current-directory
                                          (file-name-directory (directory-file-name current-directory))))
                       (throw 'break nil)))))
-              ;;(setq list-of-possible-targets (nreverse list-of-possible-targets))
+              ;; (setq list-of-possible-targets (nreverse list-of-possible-targets))
+	      (setq list-of-possible-targets '("/home/misha/Nextcloud/mnotes/org-roam/pdf_notes"))
 
               ;; NOTE(nox): Create list of targets from search path
               (dolist (path org-noter-notes-search-path)
@@ -2253,8 +2254,9 @@ notes file, even if it finds one."
                                                                         'face '(foreground-color . "green"))))))
                       (push file-name list-of-possible-targets)))))
 
-              (setq target (completing-read "Where do you want to save it? " list-of-possible-targets
-                                            nil t))
+              ;;(setq target (completing-read "Where do you want to save it? " (car list-of-possible-targets)
+              ;;                              nil t))
+              (setq target (car list-of-possible-targets))
               (set-text-properties 0 (length target) nil target)
               (unless (file-exists-p target) (write-region "" nil target))
 
